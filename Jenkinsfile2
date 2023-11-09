@@ -3,23 +3,13 @@ pipeline {
     agent any
     
     stages {
-        
-        stage('Git Clone') {
-            steps {
-                withCredentials([usernamePassword(credentialsId: "github-credential", passwordVariable: 'password', usernameVariable: 'username')]) {
-                    sh '''
-                    rm -r react-may-2023
-                    git clone --single-branch --branch main https://${username}:${password}@github.com/jokgarcia143/react-may-2023.git
-                    ls
-                    '''
-                }
-            }
-        }
-        stage('Install') {
+       stage('Install') {
     
             steps {
                 sh '''
-                    cd react-may-2023/firebase-crud-basic
+                    echo "Install"
+                    cd firebase-crud-basic
+                    ls
                 '''
             }
         }
@@ -27,7 +17,7 @@ pipeline {
             
             steps {
                 sh '''
-                    cd react-may-2023/firebase-crud-basic
+                    echo "Build"
                 '''
             }
         }
